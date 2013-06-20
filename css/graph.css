@@ -1,0 +1,24 @@
+﻿#data-table {
+	display: none;
+}
+.bar span {
+	background: #fefefe url(/content/images/info-bg.gif) 0 100% repeat-x;
+}
+.fig0 {
+	background: #747474 url(/content/images/bar-03-bg.gif) 0 0 repeat-y;
+}
+.fig1 {
+	background: #65c2e8 url(/content/images/bar-02-bg.gif) 0 0 repeat-y;
+}
+.fig2 {
+	background: #eea151 url(/content/images/bar-01-bg.gif) 0 0 repeat-y;
+}
+
+div#chart_container {
+    position: absolute;
+    width: 320px;
+    margin-top: 50px;
+    padding: 15px;
+    border: 1px solid #000000;
+    background-color: #eeeeee;
+}

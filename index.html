@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <title>BluePony Monitor</title>
+
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+        <script type="text/javascript" src="js/anigraph.js"></script>
+
+        <link href="css/graph.css" rel="stylesheet" type="text/css" />
+        <link href="css/common.css" rel="stylesheet" type="text/css" />
+
+    </head>
+    <body>
+        <style>
+          .nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+          .nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
+    
+          #home   .ui-icon { background:  url('img/53-house.png') 50% 50% no-repeat; background-size: 32px 21px; }
+          #online .ui-icon { background:  url('img/112-group.png') 50% 50% no-repeat; background-size: 24px 22px; }
+          #orders .ui-icon { background:  url('img/137-presentation.png') 50% 50% no-repeat; background-size: 24px 22px; }
+          #graphs .ui-icon { background:  url('img/17-bar-chart.png') 50% 50% no-repeat; background-size: 24px 22px; }
+          #search .ui-icon { background:  url('img/19-gear.png') 50% 50% no-repeat; background-size: 26px 26px; }    
+        </style>
+
+        <div data-role="page" data-title="BP Mobile" id="HomePage">
+
+
+          <section id="main">
+            <div data-role="header" style="background-image:url('Images/background2.jpg');" data-theme="b" data-position="fixed">
+                <a onclick="#" id="summaryLoginButton" class="ui-btn-right" >Login</a>
+                <h1>BluePony</h1>
+            </div>
+
+            <div id="loginPanel">
+                <div data-role="content"  data-inset="true">
+                    <label for="txtUsername">Username:</label>
+                    <input type="text" id="txtUsername" name="txtUsername" />
+                    <label for="txtPassword">Password:</label>
+                    <input type="password" id="txtPassword" name="txtPassword" />
+                   <input type="button" id="btnLogin" value="Login"/>
+                </div>
+            </div>
+
+            <div data-role="content" id="summaryPanel">
+                <ul data-role="listview">
+                <li>
+                    <span>Todays Orders </span><span id="numOrdersToday"></span> <span style="float:right;" id="orderAmtToday"></span>
+                </li>
+                <li>
+                    <span>Users Online</span> <span style="float:right;" id="numUsersOnline"></span>
+                </li>
+                <li>
+                    <span>Basket Amount</span> <span style="float:right;" id="basketAmt"></span>
+                </li>
+                </ul>
+            </div>
+
+          </section>
+
+          <div data-role="footer" class="nav-glyphish-example" data-position="fixed" data-id="mainNavFooter" data-theme="a">
+            <div data-role="navbar" class="nav-glyphish-example" >
+              <ul>
+                <li><a href="index.html" data-icon="custom"  class="ui-btn-active ui-state-persist" id="home">Home</a></li>
+                <li><a href="online.html" data-icon="custom" id="online">Online</a></li>
+                <li><a href="orders.html" data-icon="custom" id="orders">Orders</a></li>
+                <li><a href="graphs.html" data-icon="custom" id="graphs">Graphs</a></li>
+                <li><a href="search.html" data-icon="custom" id="search">Search</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/online.js"></script>
+        <script type="text/javascript" src="js/orders.js"></script>
+        <script type="text/javascript" src="js/graphs.js"></script>
+        
+        <script type="text/javascript">
+            initialised = true;
+            
+        </script>
+    </body>
+</html>

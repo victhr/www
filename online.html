@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Online Users</title>
+
+    </head>
+    <body>
+        <style>
+          .nav-glyphish-example .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+          .nav-glyphish-example .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: none !important; border-radius: none !important; }
+    
+          #home   .ui-icon { background:  url('img/53-house.png') 50% 50% no-repeat; background-size: 32px 21px; }
+          #online .ui-icon { background:  url('img/112-group.png') 50% 50% no-repeat; background-size: 24px 22px; }
+          #orders .ui-icon { background:  url('img/137-presentation.png') 50% 50% no-repeat; background-size: 24px 22px; }
+          #graphs .ui-icon { background:  url('img/17-bar-chart.png') 50% 50% no-repeat; background-size: 24px 22px; }
+          #search .ui-icon { background:  url('img/19-gear.png') 50% 50% no-repeat; background-size: 26px 26px; }    
+        </style>
+
+
+        <div data-role="page" data-title="Online" id="OnlinePage">
+
+        <script type="text/javascript">
+            $('#OnlinePage').on('pageshow', function () {
+                onlineIntervalId = window.setInterval(refreshUsers, 10000);
+            });
+
+            $('#OnlinePage').on('pagehide', function () {
+                clearInterval(onlineIntervalId);
+            });
+
+            refreshUsers();
+        </script>
+
+          <section id="main">
+              
+                <div data-role="header" style="background-image:url('Images/background2.jpg');" data-theme="b" data-position="fixed">
+                  <a onclick="refreshUsers();" id="btnRefreshUsers" data-icon="refresh" class="ui-btn-right" >Refresh</a>
+                  <h1>Online Users</h1>
+                </div>
+
+                <ul data-role="listview" id="onlineUsers">
+                </ul>
+
+          </section>
+
+          <div data-role="footer" class="nav-glyphish-example" data-position="fixed" data-id="mainNavFooter" data-theme="a">
+            <div data-role="navbar" class="nav-glyphish-example" >
+              <ul>
+                <li><a href="index.html" data-icon="custom" id="home">Home</a></li>
+                <li><a href="online.html" data-icon="custom" class="ui-btn-active ui-state-persist" id="online">Online</a></li>
+                <li><a href="orders.html" data-icon="custom" id="orders">Orders</a></li>
+                <li><a href="graphs.html" data-icon="custom" id="graphs">Graphs</a></li>
+                <li><a href="search.html" data-icon="custom" id="search">Search</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>
