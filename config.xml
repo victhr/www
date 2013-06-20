@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets"
         xmlns:gap="http://phonegap.com/ns/1.0"
-        id="BPAdmin"
+        id="PhotoTest"
         version="2.0.0">
-    <name>BPAdmin</name>
+    <name>PhotoTest</name>
 
     <description>
         Hello World sample application that responds to the deviceready event.
