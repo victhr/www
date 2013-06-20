@@ -58,20 +58,32 @@ $(document).ready(function () {
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
 
-    $('#addPhotoButton').click(function () {
-		navigator.camera.getPicture(onSuccess, onFail, { quality: 50, DestinationType: Camera.DestinationType.DATA_URL });
-		});
+	          $('#addPhotoButton').click(function () {
+            navigator.camera.getPicture(onGetImage, onGetImageFail,
+              { quality: 50,
+                destinationType: Camera.DestinationType.FILE_URI,
+                sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM
+              });
+          });
+
+          $('#takePhotoButton').click(function () {
+            navigator.camera.getPicture(onGetImage, onGetImageFail,
+              { quality: 50,
+                destinationType: Camera.DestinationType.FILE_URI,
+                sourceType: Camera.PictureSourceType.CAMERA
+              });
+          });
+
 });
 
-function onSuccess(imageUrl) {
-	$("#photosList").append($("<li><img src='"+imageUrl+"'/></li>"));
-	$("#photosList").listview("refresh");
-}
+          function onGetImage(imageURL) {
+            $('#photosList').append($("<li><img src='" + imageURL + "'/></li>"));
+            $('#photosList').listview("refresh");
+          }
 
-function onFail(message) {
-	alert("Failed " + message);
-}
-
+          function onGetImageFail(message) {
+            alert('Failed because ' + message);
+          }
 
 
 
