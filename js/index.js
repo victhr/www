@@ -41,9 +41,6 @@ var app = {
     }
 };
 
-//var baseURL = "http://92.19.252.49/BPAdminService";
-
-var baseURL = "http://mobile.bluepony.co.uk";
 
 function formatJSONDate(jsonDate) {
     var newDate = new Date(parseInt(jsonDate.substr(6)));
@@ -61,90 +58,20 @@ $(document).ready(function () {
     $.support.cors = true;
     $.mobile.allowCrossDomainPages = true;
 
-    var loginData = isLoggedIn();
-    if (loginData.loggedIn) {
-        $('#loginPanel').hide();
-        refreshSummaryData();
-        setSummaryPageRefresh();
-        $('#summaryLoginButton').text(loginData.name);
-    } else $('#summaryPanel').hide();
-
-    $('#btnLogin').click(function () {
-
-        $.ajax
-        ({
-            type: "POST",
-            url: baseURL + "/account/clientlogin",
-            dataType: 'json',
-            data: { UserName: $('#txtUsername').val(), Password: $('#txtPassword').val() },
-            success: function (jsonData) {
-                $('#loginPanel').hide();
-                $('#summaryPanel').show();
-                refreshSummaryData();
-                setSummaryPageRefesh();
-
-            },
-            error: function (request, error) {
-                $('#summaryPanel').hide();
-                alert('Invalid username or password' + error);
-            }
-        });
-    });
+    $('#addPhotoButton').click(function () {
+		navigator.camera.getPicture(onSuccess, onFail, { quality: 50, DestinationType: Camera.DestinationType.DATA_URL });
+		});
 });
 
-var homeIntervalId;
-
-function setSummaryPageRefresh() {
-    $('#HomePage').on('pageshow', function () {
-        homeIntervalId = window.setInterval(refreshSummaryData, 30000);
-        refreshSummaryData();
-    });
-
-    $('#HomePage').on('pagehide', function () {
-        clearInterval(homeIntervalId);
-    });
-
+function onSuccess(imageUrl) {
+	$("#photosList").append($("<li><img src='"+imageUrl+"'/></li>"));
+	$("#photosList").listview("refresh");
 }
 
-function isLoggedIn() {
-    var loginData;
-    $.ajax({
-        beforeSend: function () { $.mobile.showPageLoadingMsg(); }, //Show spinner
-        complete: function () { $.mobile.hidePageLoadingMsg() }, //Hide spinner
-        type: "POST",
-        async:false,
-        url: baseURL + "/account/isloggedin",
-        dataType: 'json',
-        success: function (jsonData) {
-            loginData = jsonData;
-        },
-        error: function (request, error) {
-            loginData = new { loggedIn : false, name : 'Guest' };
-        }
-    });
-    return loginData;
+function onFail(message) {
+	alert("Failed " + message);
 }
 
-function refreshSummaryData() {
-    $.ajax
-    ({
-        beforeSend: function () { $.mobile.showPageLoadingMsg(); }, //Show spinner
-        complete: function () { $.mobile.hidePageLoadingMsg() }, //Hide spinner
-        type: "POST",
-        url: baseURL + "/monitor/gettodaysdata",
-        dataType: 'json',
-        success: function (jsonData) {
-            $('#summaryPanel').show();
-            $("#numOrdersToday").text("(" + jsonData.stats.NumOrdersToday + ")");
-            $("#orderAmtToday").html("&pound;" + jsonData.stats.OrderAmtToday);
-            $("#numUsersOnline").text(jsonData.stats.NumUsersOnline);
-            $("#basketAmt").html("&pound;" + jsonData.stats.BasketAmount);
-        },
-        error: function (request, error) {
-            alert('failed - ' + error);
-        }
-    });
 
-}
 
 
